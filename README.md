@@ -1,5 +1,12 @@
 # starting this app
 
+You will need to have sbt, java 8 and docker installed to run this application.
+
+
+This application was developed in a macbook pro osx Sierra v10.12.6 and tested with google chrome Version 60.0.3112.113.
+
+
+
 start redis from docker docker-compose.yml file in /docker directory
 ```
 cd docker
@@ -16,6 +23,7 @@ sbt run -Dhttp.port=8080
 ```
 This command will start a server running play listening on port 8080. **If you don't pass the http.port command 
 this application will not run well.**
+
 
 
 
