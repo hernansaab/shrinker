@@ -1,0 +1,40 @@
+@*
+ * This template is called from the `index` template. This template
+ * handles the rendering of the page header and body tags. It takes
+ * two arguments, a `String` for the title of the page and an `Html`
+ * object to insert into the body of the page.
+ *@
+@(map: Map[String, String])
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        @* Here's where we render the page title `String`. *@
+        <meta charset="utf-8">
+        <title>@map.get("url")</title>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
+
+    </head>
+    <body>
+
+    <br>
+    <form action="/" id="generate">
+        Enter Page link:<br>
+        <br>
+       <input type="text" name="url" value="@map.get("input")" size="120">
+        <br>
+        <br>
+    </form>
+    <button type="submit" value="Submit" form="generate">Generate</button>
+
+    @if(map.contains("error")){
+        <h4 class="error">@map.get("error")</h4>
+
+    }
+    @if(map.contains("url")){
+        <h4>Your link is </h4><a href="@map.get("url")" target="_blank">@map.get("url")</a>
+    }
+    </body>
+
+</html>
