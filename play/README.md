@@ -27,7 +27,7 @@ It should be simple. Go to **http://localhost:8080** and enter an address.
 ## On the code....
 
 This application was coded on top of play 2.6 on scala.
-There are three controllers under /app/controllers
+There are three controllers under **/app/controllers**
 
 * **controllers.ErrorController** is simple and just displays an error page when tiny address does not exist.
 * **controllers.HomeController** is the page that renders the main page and calculates the tiny address.
@@ -106,7 +106,7 @@ Also,  we need to think a bit harder if we want an implementation that may need 
 There is no way I can have an application done in 4 or 5 hours with 95%+ test case coverage and documentation included.
 I could have done this much faster with spring boot since this is what I am currently using, but since I am applying as a scala developer I decided to go with play.
 
-There was a cost on setting up play with intellij the first time. I found a few integration issues. **Cost 1 hour**.
+* There was a cost on setting up play with intellij the first time. I found a few integration issues. **Cost 1 hour**.
 * Cost of writing code with no test cases with latest play V2.6.X (about 250 lines of code plus comments plus learning the latest play 2.6.X changes since I last used it): **about 5 hours**.
 * Cost of writing test cases with 90%+ coverage (about 300 lines of code): **about 2 hours**
 * Cost of writing documentation: **about 1.5 hours**
