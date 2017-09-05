@@ -17,6 +17,8 @@ trait Shrinker {
 @Singleton
 class ShrinkerImplementation @Inject()(nosql: NoSQL) extends Shrinker {
 
+  val SAVE_AFTER_INCREMENTS = 200
+
   val incrementor: AtomicLong = new AtomicLong()
   val server = getServer()
 
@@ -31,7 +33,7 @@ class ShrinkerImplementation @Inject()(nosql: NoSQL) extends Shrinker {
   }
 
   private val incrementKey = nosql.get("increment.key") match {
-    case Some(e: String) => e.toLong
+    case Some(e: String) => e.toLong + SAVE_AFTER_INCREMENTS
     case _ => {
       nosql.put("increment.key", "0")
       0L
@@ -66,7 +68,9 @@ class ShrinkerImplementation @Inject()(nosql: NoSQL) extends Shrinker {
   def incrementAndSaveCounter(): Long = {
     this.synchronized {
       val long = incrementor.incrementAndGet()
-      nosql.put("increment.key", long.toString)
+      if(long % SAVE_AFTER_INCREMENTS == 0) {
+        nosql.put("increment.key", long.toString)
+      }
       long
     }
   }

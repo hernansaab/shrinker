@@ -66,7 +66,9 @@ class TestShrinker extends PlaySpec {
   "increment counter should " should {
     "increment" in {
       val fakeNoSQL = new fakeNosql()
-      val shrinker = new ShrinkerWithMocks(fakeNoSQL)
+      val shrinker = new ShrinkerWithMocks(fakeNoSQL){
+        override  val SAVE_AFTER_INCREMENTS = 1
+      }
       shrinker.incrementAndSaveCounter()
 
       fakeNoSQL.get("increment.key") mustBe Some("1")
