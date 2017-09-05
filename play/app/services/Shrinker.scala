@@ -51,8 +51,8 @@ class ShrinkerImplementation @Inject()(nosql: NoSQL) extends Shrinker {
     nosql.get("url::" + url) match {
       case Some(e: String) => protocol + "://" + server + "/" + e
       case None => {
-        incrementAndSaveCounter()
-        val numericKey = incrementor.get() * getThreadPoolSize() + getCurrentThreadPosition()
+
+        val numericKey =  incrementAndSaveCounter()
         val key = encode(numericKey)
         nosql.put("tiny::" + key, url)
         nosql.put("url::" + url, key)
